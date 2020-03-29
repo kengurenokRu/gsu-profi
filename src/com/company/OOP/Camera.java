@@ -1,30 +1,28 @@
 package com.company.OOP;
 
+import java.util.Objects;
+
 public class Camera extends phototechnique {
     private String typeCamera;
     private String sizeMatrix;
     private String typeMatrix;
-    double countMatrixPoint;
+    private double countMatrixPoint;
 
-    Camera()
-    {
+    Camera() {
+        super("D3100", 2010, Manufacturer.Китай);
         this.countMatrixPoint = 14.2;
         this.sizeMatrix = "1.5 crop";
         this.typeMatrix = "CMOS";
         this.typeCamera = "Зеркальная";
-        setModel("D3100");
-        setReleaseYear(2010);
+
     }
 
-    Camera (String typeCamera,String sizeMatrix, String typeMatrix, double countMatrixPoint, String model, int releaseYear)
-    {
+    Camera(String typeCamera, String sizeMatrix, String typeMatrix, double countMatrixPoint, String model, int releaseYear, Manufacturer manufacturer) {
+        super(model, releaseYear, manufacturer);
         this.countMatrixPoint = countMatrixPoint;
         this.sizeMatrix = sizeMatrix;
         this.typeMatrix = typeMatrix;
         this.typeCamera = typeCamera;
-        setModel(model);
-        setReleaseYear(releaseYear);
-
     }
 
     public double getCountMatrixPoint() {
@@ -57,6 +55,35 @@ public class Camera extends phototechnique {
 
     public void setTypeCamera(String typeCamera) {
         this.typeCamera = typeCamera;
+    }
+
+    public String toString() {
+        return "\nФотоаппарат:" + super.toString() +
+                "\tТип камеры: " + typeCamera +
+                "\tРазмер матрицы: " + sizeMatrix +
+                "\tТип матрицы: " + typeMatrix +
+                "\tКоличество мегапикселей: " + countMatrixPoint;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if ((o == null) || (getClass() != o.getClass()))
+        {
+            return false;
+        }
+        if (!super.equals(o))
+            return false;
+
+        Camera that = (Camera) o;
+        if ((this.typeMatrix.equals(that.typeMatrix)) && (this.countMatrixPoint == that.countMatrixPoint) &&
+                (this.sizeMatrix.equals(that.sizeMatrix)) && (this.typeCamera.equals(that.typeCamera))) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

@@ -43,7 +43,7 @@ public class lab1 {
         while (x <= d) {
             x += h;
             if (x < a) {
-                if (((x + u / (5 * x)) <= 0) || (x == 0)) {
+                if ((x == 0) || ((x + u / (5 * x)) <= 0)) {
                     System.out.println("x = " + x + "  res = not res");
                     continue;
                 }
